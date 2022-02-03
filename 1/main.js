@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    
     // change the id and name of radio button groups in different rows
     let countId = 4
     let countRowRadioOptions = 2
@@ -22,8 +22,16 @@ $(document).ready(function(){
     }
 
     // add an empty row
+    let detachedElem;
+    
     $(document).on('click', '.c-add-row', function(){
-        let temp = makeCopy($(".c-row").last().clone())
+        console.log(detachedElem)
+        let temp
+        if (detachedElem) {
+            temp = makeCopy($(detachedElem).last().clone())
+        } else {
+            temp = makeCopy($(".c-row").last().clone())
+        }
         temp.find(".input-box").val("")
         temp.find("input:radio").prop('checked', false)
         temp.find(".input-box").prop("disabled", false)
@@ -33,8 +41,9 @@ $(document).ready(function(){
 
     // delete a row
     $(document).on('click', '.c-delete', function(){
-        $(this).parents().eq(1).remove()
+        detachedElem = $(this).parents().eq(1).detach()
         numberHandling()
+        console.log(detachedElem)
     });
 
     // clone a row
