@@ -70,6 +70,6 @@ $(document).ready(function(){
         $(".all-rows span")
         .text($(".tbody").children().length)
         $(".not-confirmed-rows span")
-        .text($(".form-check-input[value=confirmed]:checked").length)
+        .text($(".form-check-input[value=confirmed]").length - $(".form-check-input[value=confirmed]:checked").length)
     }
 });
